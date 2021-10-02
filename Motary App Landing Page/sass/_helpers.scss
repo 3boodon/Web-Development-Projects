@@ -1,0 +1,154 @@
+@mixin flex($direction, $justifyContent, $alignItems) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+}
+
+@mixin beforeAfter($color, $width, $height) {
+  content: "";
+  position: absolute;
+  background-color: $color;
+  width: $width;
+  height: $height;
+}
+
+@mixin child($childNo) {
+  &:nth-child($childNo) {
+    @content;
+  }
+}
+
+@mixin breakpoint($media) {
+  @if $media == phone {
+    @media (max-width: 435px) {
+      @content;
+    }
+  } @else if $media == smIpad {
+    @media (max-width: 580px) {
+      @content;
+    }
+  } @else if $media == ipad {
+    @media (max-width: 768px) {
+      @content;
+    }
+  } @else if $media == smDesktop {
+    @media (max-width: 900px) {
+      @content;
+    }
+  } @else if $media == desktop {
+    @media (max-width: 1200px) {
+      @content;
+    }
+  } @else if $media == lgDesktop {
+    @media (min-width: 1200px) {
+      @content;
+    }
+  } @else {
+    @warn "Breakpoint mixin supports: xs, sm, md, lg";
+  }
+}
+
+@mixin centerPosition {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+%details {
+  .details {
+    @include breakpoint(ipad) {
+      text-align: center;
+    }
+    .label {
+      display: inline-block;
+      color: $primaryColor;
+      font-size: 1.3rem;
+      margin-bottom: 0.6rem;
+    }
+    .title {
+      @include breakpoint(smDesktop) {
+        font-size: 3rem;
+      }
+      @include breakpoint(ipad) {
+        font-size: 4rem;
+      }
+      font-size: 4rem;
+    }
+    .description {
+      @include breakpoint(smDesktop) {
+        font-size: 1.5rem;
+      }
+      @include breakpoint(ipad) {
+        font-size: 1.7rem;
+      }
+      font-size: 1.7rem;
+      margin: 1.5rem 0 3rem;
+      color: $descColor;
+    }
+    .buttons {
+      .btn {
+        display: inline-block;
+        padding: 1rem 2rem;
+        border-radius: 0.6rem;
+        cursor: pointer;
+        margin-right: 1rem;
+        font-size: 1.3rem;
+        @include breakpoint(smDesktop) {
+          font-size: 1rem;
+          margin-bottom: 1rem;
+        }
+
+        i {
+          font-size: 1.4rem;
+          margin-right: 1rem;
+        }
+        transition: all 0.5s ease;
+        &:hover {
+          color: #fff;
+          background: $primaryColor;
+          box-shadow: 0 0 3rem rgba(14, 12, 139, 0.082);
+        }
+        &:active {
+          transform: scale(0.92);
+        }
+      }
+
+      .apple {
+        color: #fff;
+        background-color: $textColor;
+      }
+      .android {
+        padding: 0.8rem 2rem;
+        border: 0.2rem solid $textColor;
+        @include breakpoint(ipad) {
+          margin: 0;
+        }
+        &:hover {
+          border-color: $primaryColor;
+        }
+      }
+    }
+  }
+}
+
+%section-image {
+  .section-image {
+    @include breakpoint(smIpad) {
+      width: 100%;
+      padding: 0;
+      margin: 3rem 0;
+    }
+    @include breakpoint(ipad) {
+      width: 75%;
+    }
+    width: 50%;
+    padding: 5rem;
+    padding-right: 0;
+    transition: transform 0.5s ease;
+    &:hover {
+      transform: scale(1.06);
+    }
+  }
+}

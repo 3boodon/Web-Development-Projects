@@ -1,0 +1,30 @@
+@import "variables";
+@import "helpers";
+
+@mixin openedMenuEffect {
+  &.opened {
+    .logo {
+      position: relative;
+      z-index: 300;
+    }
+    nav {
+      transform: translateX(0);
+    }
+    .menu {
+      display: block;
+      div {
+        background: none;
+        &::before,
+        &::after {
+          background-color: $textColor;
+          top: 0;
+          width: inherit;
+          transform: rotate(45deg);
+        }
+        &::before {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
+}

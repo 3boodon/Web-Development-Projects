@@ -1,0 +1,512 @@
+@import "./variables";
+@import "./helpers";
+@import "./reset";
+@import "./animations";
+
+// Start Main Styles
+//* Header Section
+header {
+  padding: 2rem 0;
+  top: 0;
+  width: 100vw;
+  position: fixed;
+  z-index: 100;
+  // backdrop-filter: blur(2rem);
+  background-color: #fff;
+  box-shadow: 0 30px 20px rgba(0, 0, 0, 0.014);
+  .container {
+    @include openedMenuEffect;
+    @include flex(row, space-between, center);
+    .logo {
+      width: 12rem;
+    }
+
+    nav {
+      @include breakpoint(ipad) {
+        padding: 10rem 3rem;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        backdrop-filter: blur(10rem);
+        color: #fff;
+        width: 40vw;
+        height: 100vh;
+        z-index: 100;
+        transition: transform ease 0.5s;
+        transform: translateX(-100%);
+      }
+
+      .nav-list {
+        @include flex(row, space-between, center);
+
+        @include breakpoint(ipad) {
+          @include flex(column, space-between, start);
+        }
+        .nav-item {
+          cursor: pointer;
+          margin-left: 3.5rem;
+          @include breakpoint(ipad) {
+            margin: 0.5rem 0 0.5rem 1rem;
+            display: block;
+            width: 100%;
+            color: $textColor;
+            transition: all 0.5s ease;
+            border-radius: 1rem;
+            &:hover {
+              background-color: darken(#fff, 20%);
+              transform: scale(1.07);
+            }
+            &:active {
+              transform: scale(0.96);
+            }
+          }
+          .nav-link {
+            @include breakpoint(ipad) {
+              padding: 2rem 2rem;
+            }
+            display: inline-block;
+            font-weight: bold;
+            font-size: 1.4rem;
+          }
+        }
+      }
+    }
+    .menu {
+      display: none;
+      @include breakpoint(ipad) {
+        display: block;
+      }
+      div {
+        position: relative;
+        cursor: pointer;
+        margin: 2rem 0;
+        width: 2rem;
+        height: 0.2rem;
+        border-radius: 1rem;
+        background-color: $textColor;
+        transition: all 0.5s;
+        &::before,
+        &::after {
+          content: "";
+          position: absolute;
+          width: 1.4rem;
+          height: inherit;
+          border-radius: inherit;
+          background: inherit;
+          right: 0;
+          transition: all 0.5s;
+        }
+
+        &::before {
+          top: -0.5rem;
+        }
+        &::after {
+          bottom: -0.5rem;
+        }
+      }
+    }
+  }
+}
+
+//* Hero Section
+.hero {
+  @include breakpoint(ipad) {
+    margin-top: 17rem;
+  }
+  margin-top: 10rem;
+  .container {
+    @include flex(row, space-between, center);
+    @include breakpoint(ipad) {
+      @include flex(column, space-between, center);
+    }
+    @extend %details;
+    @extend %section-image;
+  }
+}
+
+//* Features Section
+.features {
+  margin: 7rem 0;
+  background-color: $lightBlue;
+  padding: 10rem 0;
+  .container {
+    @include flex(row, space-between, center);
+    @include breakpoint(smDesktop) {
+      @include flex(column, space-between, center);
+    }
+  }
+  .card {
+    transition: box-shadow 0.5s ease;
+    @include breakpoint(smDesktop) {
+      width: 80%;
+      margin-bottom: 2rem;
+    }
+    @include breakpoint(smIpad) {
+      width: 100%;
+      margin-bottom: 2rem;
+    }
+    width: 25rem;
+    padding: 5rem 5rem;
+
+    text-align: center;
+    background-color: #fff;
+    border-radius: 2rem;
+
+    i {
+      color: $primaryColor;
+      font-size: 3rem;
+    }
+
+    .card-title {
+      font-size: 2rem;
+      margin: 1.5rem 0 1rem;
+    }
+
+    .card-description {
+      font-size: 1.3rem;
+      color: $descColor;
+    }
+
+    &:hover {
+      box-shadow: 0 2rem 10rem rgba(21, 70, 160, 0.13);
+    }
+  }
+}
+
+//* Provider Section
+.provider {
+  @include breakpoint(ipad) {
+    margin-bottom: 7rem;
+  }
+  .container {
+    @include flex(row, space-between, center);
+    @include breakpoint(ipad) {
+      @include flex(column, space-between, center);
+    }
+    @extend %details;
+    .details {
+      .button {
+        display: inline-block;
+        padding: 1rem 2rem;
+        border-radius: 0.6rem;
+        cursor: pointer;
+        margin-right: 1rem;
+        font-size: 1.3rem;
+        background-color: $primaryColor;
+        color: #fff;
+        transition: all 0.5s ease;
+        &:hover {
+          color: $textColor;
+          background: white;
+          box-shadow: 0 1rem 2rem rgba(33, 130, 241, 0.075);
+        }
+        &:active {
+          transform: scale(0.92);
+        }
+      }
+    }
+    @extend %section-image;
+  }
+}
+
+//* Process Section
+.process {
+  padding: 10rem 0;
+  background-color: $darkBlue;
+  color: white;
+  .container {
+    .section-title {
+      text-align: center;
+      margin-bottom: 6rem;
+      .big-title {
+        font-size: 4rem;
+      }
+      .sub-title {
+        font-size: 1.5rem;
+        color: $lightBlue;
+      }
+    }
+    .process-details {
+      @include flex(row, space-between, center);
+      @include breakpoint(ipad) {
+        @include flex(column, space-between, center);
+      }
+      .section-image {
+        @include breakpoint(ipad) {
+          width: 75%;
+        }
+        @include breakpoint(smIpad) {
+          width: 100%;
+          margin-top: 3rem;
+        }
+        width: 50%;
+      }
+      .steps {
+        @include breakpoint(smDesktop) {
+          width: 34%;
+        }
+        @include breakpoint(ipad) {
+          width: 100%;
+          @include flex(row, space-between, center);
+        }
+
+        @include breakpoint(smIpad) {
+          @include flex(column, space-between, center);
+        }
+        width: 40%;
+        .step {
+          $lineHeight: 0.8;
+          display: flex;
+
+          margin-bottom: 3rem;
+          .step-icon {
+            margin-right: 1rem;
+            line-height: $lineHeight;
+          }
+
+          .step-description {
+            h3 {
+              @include breakpoint(smDesktop) {
+                font-size: 1.5rem;
+              }
+              font-size: 2rem;
+              line-height: $lineHeight;
+              font-weight: 500;
+              margin-bottom: 1rem;
+            }
+            p {
+              @include breakpoint(smDesktop) {
+                font-size: 1.2rem;
+              }
+              font-size: 1.4rem;
+              color: $lightBlue;
+            }
+          }
+        }
+
+        @for $i from 1 to 4 {
+          .step:nth-child(#{$i}) {
+            .step-icon {
+              color: lighten($primaryColor, 10% * $i);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+//* Video Section
+.video {
+  @include breakpoint(smDesktop) {
+    margin: 10rem 0;
+  }
+  margin: 20rem 0;
+  .container {
+    .video-cover {
+      @include flex(row, center, center);
+      position: relative;
+      &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        height: 80%;
+        background-color: $lightBlue;
+        z-index: -1;
+      }
+      img {
+        @include breakpoint(smIpad) {
+          width: 100%;
+        }
+        width: 85%;
+        border-radius: 3rem;
+      }
+    }
+  }
+}
+
+//* Download Section
+.download {
+  @include breakpoint(ipad) {
+    padding: 9rem 0;
+  }
+  padding: 12rem 0;
+  background: url("../assets/images/Download Section.png") no-repeat
+    center/cover;
+  .container {
+    color: white;
+    text-align: center;
+    .download-title {
+      @include breakpoint(ipad) {
+        font-size: 3rem;
+      }
+      @include breakpoint(smIpad) {
+        font-size: 2rem;
+      }
+      font-size: 4rem;
+    }
+    .download-sub-title {
+      @include breakpoint(ipad) {
+        font-size: 1.3rem;
+      }
+      font-size: 1.6rem;
+      color: $lightBlue;
+      margin-bottom: 2rem;
+    }
+    .buttons {
+      .btn {
+        display: inline-block;
+        padding: 1rem 2rem;
+        border-radius: 0.6rem;
+        cursor: pointer;
+        margin-right: 1rem;
+        font-size: 1.3rem;
+        @include breakpoint(smIpad) {
+          &:first-child {
+            margin-bottom: 1rem;
+          }
+        }
+
+        i {
+          font-size: 1.4rem;
+          margin-right: 1rem;
+        }
+      }
+
+      .apple {
+        color: $textColor;
+        background-color: #fff;
+      }
+      .android {
+        padding: 0.8rem 2rem;
+        border: 0.2rem solid #fff;
+      }
+    }
+  }
+}
+
+//* Contact Section
+.contact-us {
+  margin: 15rem 0;
+  .container {
+    @include flex(row, space-between, center);
+    @include breakpoint(ipad) {
+      @include flex(column, space-between, center);
+    }
+    @extend %details;
+
+    form {
+      fieldset {
+        padding: 1rem 2rem;
+        border: 0.1rem solid $primaryColor;
+        border-radius: 0.7rem;
+        legend {
+          padding: 0 0.6rem;
+          color: $primaryColor;
+        }
+        input {
+          width: 100%;
+          font-family: inherit;
+          &::placeholder {
+            font-family: inherit;
+            color: $descColor;
+          }
+        }
+      }
+      .personal-info {
+        margin-bottom: 1rem;
+        @include flex(row, space-between, center);
+        fieldset {
+          flex: 1;
+          &:first-child {
+            margin-right: 1rem;
+          }
+        }
+      }
+
+      .message {
+        margin: 1rem 0;
+        textarea {
+          font-family: inherit;
+          resize: none;
+
+          &::placeholder {
+            color: $descColor;
+          }
+        }
+      }
+
+      .form-button {
+        display: inline-block;
+        width: 100%;
+        padding: 1.3rem 2rem;
+        border-radius: 0.6rem;
+        cursor: pointer;
+        margin-right: 1rem;
+        font-size: 1.3rem;
+        background-color: $primaryColor;
+        color: #fff;
+      }
+    }
+  }
+}
+
+//* footer Section
+footer {
+  background-color: $lightBlue;
+  padding: 10rem 0 4rem;
+  .container {
+    .about-us {
+      @include flex(row, space-between, start);
+      margin-bottom: 6rem;
+      .motary-desc {
+        width: 50%;
+        .logo {
+          width: 14rem;
+          margin-bottom: 1rem;
+        }
+        p {
+          @include breakpoint(ipad) {
+            font-size: 1.2rem;
+          }
+          font-size: 1.6rem;
+          color: $descColor;
+        }
+      }
+
+      .social-media {
+        @include flex(row, end, center);
+        div {
+          @include flex(row, center, center);
+          background-color: #fff;
+          border-radius: 1rem;
+          width: 4rem;
+          height: 4rem;
+          margin-left: 1rem;
+          i {
+            display: inline-block;
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+
+    .rights {
+      @include flex(row, space-between, center);
+      @include breakpoint(ipad) {
+        font-size: 1.1rem;
+      }
+      font-size: 1.4rem;
+
+      .links {
+        color: $primaryColor;
+        a {
+          margin-left: 2rem;
+        }
+      }
+    }
+  }
+}
